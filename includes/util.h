@@ -86,26 +86,55 @@ void print_class_layout(const T * var, std::unordered_map<uint8_t *, Layout_Spec
 	} else {
 		for (size_t i = 0; i < sizeof(T) / sizeof(uint8_t); i++) {
 			if (addr.count(bytes + i)) {
-				cur_str = addr[bytes + i].str.c_str();
+				const Layout_Spec& cur_layout = addr[bytes + i];
+				cur_str = cur_layout.str.c_str();
+				num_bytes = cur_layout.size;
 				index = 0;
 			}
-			if (cur_str[index] == '\0') {
+			if (cur_str == nullptr || cur_str[index] == '\0') {
 				cur_str = nullptr;
 			}
 			if (cur_str == nullptr) {
-				std::cout << "  ";
-			} else {
-				std::cout << cur_str[index];
-				if (cur_str[index + 1] == '\0') {
-					std::cout << " ";
+				if (num_bytes > 0) {
+					std::cout << "__";
 				} else {
-					std::cout << cur_str[index + 1];
+					std::cout << "..";
 				}
-				index += 2;
+			} else {
+				if (num_bytes > 0) {
+					num_bytes--;
+					std::cout << cur_str[index];
+					if (cur_str[index + 1] == '\0') {
+						std::cout << "_";
+					} else {
+						std::cout << cur_str[index + 1];
+					}
+					index += 2;
+					if (cur_str[index] == '\0') {
+						cur_str = nullptr;
+					}
+				} else {
+					std::cout << "..";
+				}
 			}
 			fifth_space++;
 			if (fifth_space == 2) {
-				std::cout << " ";
+				if (addr.count(bytes + i - 1)) {
+					std::cout << "|";
+				} else if (cur_str == nullptr || cur_str[index] == '\0') {
+					if (num_bytes > 0) {
+						std::cout << " ";
+					} else {
+						std::cout << "|";
+					}
+				} else {
+					if (num_bytes > 0) {
+						std::cout << cur_str[index];
+					} else {
+						std::cout << "|";
+					}
+					index++;
+				}
 				fifth_space = 0;
 			}
 		}

@@ -1,13 +1,13 @@
 # abi-break-demo
 
-This repo shows a relatively straightforward version of an ABI break in C++. In this case, I
-reordered the members of the class around and added one new one. The executable will
-compile with a different class layout for Simple_String than the shared library,
-which will cause a ton of problems. This repo consists of an intentionally
-pathological example with several data members when one or two would have
-sufficed. Furthermore, this code is littered with gross macros, nested if-else
-chains, intentionally bad getters and setter, etc. because I was throwing this together without too much regard for
-the cleanliness of the code.
+This repo shows a relatively straightforward version of an ABI break in C++. In
+this case, I reordered the members of the class around and added one new one.
+The executable will compile with a different class layout for Simple_String
+than the shared library, which will cause a ton of problems. This repo consists
+of an intentionally pathological example with several data members when one or
+two would have sufficed. Furthermore, this code is littered with gross macros,
+nested if-else chains, intentionally bad getters and setter, etc. because I was
+throwing this together without too much regard for the cleanliness of the code.
 
 ## Example
 
