@@ -22,6 +22,15 @@ is before anything changed. The text on the left is what I modified to get the
 result. Note that everything can change in this class, including pointers and
 const data like `added_data`.
 
+## Explanation
+
+An ABI break happens when two objects that execute code (e.g. executables and
+shared libraries) expects different things from another. In this repo, the
+shared library expects a class with one layout and the executable expects a
+class with another layout. As another example, name mangling can cause problems
+between compilers by leading to the same name in the API being two different
+names for two different objects.
+
 ## Compiling and Running
 
 Linux and MacOS:
