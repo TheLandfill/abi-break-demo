@@ -13,7 +13,7 @@ the cleanliness of the code.
 
 Here's an example of it running on my machine.
 
-![The Output of the Program](resources/output.png)
+![The Output of the Program](https://github.com/TheLandfill/abi-break-demo/blob/main/resources/abi-demo.png)
 
 Every byte is encoded by two hex digits. For ease of reading, I separated each
 the class into two bite chunks. Pink means that it just changed, green means
